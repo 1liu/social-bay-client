@@ -8,6 +8,7 @@ import AppIcon from '../images/icon.png'
 import axios from 'axios'
 //MUI
 import Grid from '@material-ui/core/Grid'
+import { Link } from 'react-router-dom';
 const styles = {
   form: {
     textAlign: 'center'
@@ -17,7 +18,7 @@ const styles = {
     width: 100
   },
   button: {
-    marginTop: 10
+    margin: 10
   },
   pageTitle: {
     margin: '10px auto 10px auto',
@@ -124,10 +125,22 @@ class Login extends Component {
             >
               Login
             </Button>
+
+            <Link to='/signup'>
+              <Button
+                variant="contained"
+                color="primary"
+                className={classes.button}
+                onClick={this.handleSubmit}
+              >
+                Signup
+            </Button>
+            </Link>
+
           </form>
         </Grid>
         <Grid item sm></Grid>
-      </Grid>
+      </Grid >
     )
   }
 }
