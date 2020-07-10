@@ -58,6 +58,7 @@ class Login extends Component {
     axios.post('/login', userDate)
       .then(res => {
         console.log(res.data);
+        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
         this.setState({ loading: false });
         this.props.history.push('/');
       })
@@ -141,8 +142,6 @@ class Login extends Component {
                 variant="contained"
                 color="primary"
                 className={classes.button}
-                onClick={this.handleSubmit}
-                disabled={loading}
               >
                 Signup
             </Button>
