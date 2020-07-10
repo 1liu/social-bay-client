@@ -5,6 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types'
 import AppIcon from '../images/icon.png'
+import axios from 'axios'
 //MUI
 import Grid from '@material-ui/core/Grid'
 const styles = {
@@ -23,6 +24,10 @@ const styles = {
   },
   textField: {
     margin: '10px auto 10px auto',
+  },
+  customError: {
+    color: 'red',
+    fontSize: 12
   }
 }
 
@@ -33,12 +38,31 @@ class Login extends Component {
       email: '',
       password: '',
       loading: false,
-      errors: {}
+      errors: {
+
+      }
     }
   }
   handleSubmit = (event) => {
-    event.preventDefault()
-    console.log('submitted')
+    event.preventDefault();
+    this.setState({ loading: true });
+    const userDate = {
+      email: this.state.email,
+      password: this.state.password
+    };
+    axios.post('/login', userDate)
+      .then(res => {
+        console.log(res.data);
+        this.setState({ loading: false });
+        this.props.history.push('/');
+      })
+      .catch(err => [
+        this.setState({
+          errors: err.response.data,
+          loading: false
+        })
+      ])
+    console.log('submitted');
   }
   handleChange = (event) => {
     this.setState({
@@ -48,6 +72,8 @@ class Login extends Component {
 
   render() {
     const { classes } = this.props;
+    const { errors, loading } = this.state;
+
     return (
       <Grid container className={classes.form}>
         <Grid item sm></Grid>
@@ -65,6 +91,8 @@ class Login extends Component {
               label="Email"
               fullWidth
               className={classes.textField}
+              helperText={errors.email}
+              error={errors.email ? true : false}
               value={this.state.email}
               onChange={this.handleChange}
             >
@@ -76,10 +104,18 @@ class Login extends Component {
               label="Password"
               fullWidth
               className={classes.textField}
+              helperText={errors.password}
+              error={errors.password ? true : false}
               value={this.state.password}
               onChange={this.handleChange}
             >
             </TextField>
+            {errors.general && (
+              <Typography variant='body2'
+                className={classes.customError}>
+                {errors.general}
+              </Typography>
+            )}
             <Button
               variant="contained"
               color="primary"
