@@ -8,6 +8,7 @@ import AppIcon from '../images/icon.png'
 import axios from 'axios'
 //MUI
 import Grid from '@material-ui/core/Grid'
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { Link } from 'react-router-dom';
 const styles = {
   form: {
@@ -29,6 +30,9 @@ const styles = {
   customError: {
     color: 'red',
     fontSize: 12
+  },
+  progress: {
+    position: 'absolute'
   }
 }
 
@@ -124,6 +128,12 @@ class Login extends Component {
               onClick={this.handleSubmit}
             >
               Login
+              {loading && (
+                <CircularProgress
+                  className={classes.progress}
+                  size={30}
+                  color='secondary' />
+              )}
             </Button>
 
             <Link to='/signup'>
@@ -132,6 +142,7 @@ class Login extends Component {
                 color="primary"
                 className={classes.button}
                 onClick={this.handleSubmit}
+                disabled={loading}
               >
                 Signup
             </Button>
