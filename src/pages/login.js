@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
-import { TextField } from '@material-ui/core';
+import TextField from '@material-ui/core/TextField';
 import withStyles from '@material-ui/core/styles/withStyles'
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types'
 import AppIcon from '../images/icon.png'
 //MUI
@@ -13,6 +14,15 @@ const styles = {
   image: {
     margin: '20px auto 20px auto',
     width: 100
+  },
+  button: {
+    marginTop: 10
+  },
+  pageTitle: {
+    margin: '10px auto 10px auto',
+  },
+  textField: {
+    margin: '10px auto 10px auto',
   }
 }
 
@@ -27,6 +37,7 @@ class Login extends Component {
     }
   }
   handleSubmit = (event) => {
+    event.preventDefault()
     console.log('submitted')
   }
   handleChange = (event) => {
@@ -58,6 +69,25 @@ class Login extends Component {
               onChange={this.handleChange}
             >
             </TextField>
+            <TextField
+              id="password"
+              name="password"
+              type="password"
+              label="Password"
+              fullWidth
+              className={classes.textField}
+              value={this.state.password}
+              onChange={this.handleChange}
+            >
+            </TextField>
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={this.handleSubmit}
+            >
+              Login
+            </Button>
           </form>
         </Grid>
         <Grid item sm></Grid>
