@@ -10,7 +10,8 @@ import axios from 'axios'
 import Grid from '@material-ui/core/Grid'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Link } from 'react-router-dom';
-const styles = {
+const styles = theme => ({
+  ...theme.spreadThis,
   form: {
     textAlign: 'center'
   },
@@ -34,7 +35,32 @@ const styles = {
   progress: {
     position: 'absolute'
   }
-}
+})
+// const styles = {
+//   form: {
+//     textAlign: 'center'
+//   },
+//   image: {
+//     margin: '20px auto 20px auto',
+//     width: 100
+//   },
+//   button: {
+//     margin: 10
+//   },
+//   pageTitle: {
+//     margin: '10px auto 10px auto',
+//   },
+//   textField: {
+//     margin: '10px auto 10px auto',
+//   },
+//   customError: {
+//     color: 'red',
+//     fontSize: 12
+//   },
+//   progress: {
+//     position: 'absolute'
+//   }
+// }
 
 class Login extends Component {
   constructor(props) {
