@@ -11,7 +11,7 @@ import Grid from '@material-ui/core/Grid'
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { Link } from 'react-router-dom';
 
-const styles = {
+const styles = theme => ({
   form: {
     textAlign: 'center'
   },
@@ -35,7 +35,7 @@ const styles = {
   progress: {
     position: 'absolute'
   }
-}
+})
 
 class Signup extends Component {
   constructor(props) {

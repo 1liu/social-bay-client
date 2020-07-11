@@ -29,6 +29,7 @@ if (token) {
 
   }
 }
+console.log('Theme', theme)
 function App() {
   return (
     <ThemeProvider theme={theme}>
