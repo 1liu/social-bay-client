@@ -4,6 +4,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
 //MUI
+import IconButton from '@material-ui/core/IconButton'
 import Button from '@material-ui/core/Button'
 import Paper from '@material-ui/core/Paper'
 import MuiLink from '@material-ui/core/Link'
@@ -11,8 +12,12 @@ import Typography from '@material-ui/core/Typography'
 import LocationOn from '@material-ui/icons/LocationOn'
 import CalendarToday from '@material-ui/icons/CalendarToday'
 import LinkIcon from '@material-ui/icons/Link'
+import EditIcon from '@material-ui/icons/Edit'
+import Tooltip from '@material-ui/core/Tooltip';
+
 // redux
 import { connect } from 'react-redux'
+
 
 const styles = theme => ({
   paper: {
@@ -63,6 +68,16 @@ const styles = theme => ({
 })
 
 export class Profile extends Component {
+  handleImageChange = (event) => {
+    const image = event.target.files[0];
+
+  }
+
+  handleEditImage = () => {
+    const fileInput = document.getElementById('imageInput');
+    fileInput.click();
+  }
+
   render() {
     const {
       classes,
@@ -86,11 +101,21 @@ export class Profile extends Component {
           <div className={classes.profile}>
             <div className="image-wrapper">
               <img src={imageUrl} alt="profile" className="profile-image" />
+              <input type="file"
+                id="imageInput"
+                onChange={this.handleImageChange}
+                hidden="hidden"
+              />
+              <Tooltip title="Edit profile image" placement="top">
+                <IconButton onClick={this.handleEditImage} className="button">
+                  <EditIcon color="primary" />
+                </IconButton>
+              </Tooltip>
             </div>
             <hr />
             <div className="profile-details">
               <MuiLink component={Link} to={`/users/${handle}`} color="primary" variant="h5">
-                @handle
+                @{handle}
               </MuiLink>
               <hr />
               {bio && <Typography variant='body2'>{bio}</Typography>}
