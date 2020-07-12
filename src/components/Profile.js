@@ -17,7 +17,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 
 // redux
 import { connect } from 'react-redux'
-
+import { uploadImage, logoutUser } from '../redux/actions/userActions'
 
 const styles = theme => ({
   paper: {
@@ -70,7 +70,9 @@ const styles = theme => ({
 export class Profile extends Component {
   handleImageChange = (event) => {
     const image = event.target.files[0];
-
+    const formData = new FormData();
+    formData.append('image', image, image.name);
+    this.props.uploadImage(formData);
   }
 
   handleEditImage = () => {
@@ -164,9 +166,16 @@ export class Profile extends Component {
 
 Profile.prototypes = {
   user: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  logoutUser: PropTypes.func.isRequired,
+  uploadImage: PropTypes.func.isRequired
 }
 const mapStateToProps = (state) => ({
   user: state.user
 });
-export default connect(mapStateToProps)(withStyles(styles)(Profile))
+
+const mapActionsToProps = {
+  uploadImage,
+  logoutUser
+}
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Profile))
