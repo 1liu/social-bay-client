@@ -32,6 +32,7 @@ class Home extends Component {
 
         <Grid item sm={4} xs={12}>
           <p>Profile</p>
+          <Profile />
         </Grid>
       </Grid>
 
