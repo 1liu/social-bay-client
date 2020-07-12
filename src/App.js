@@ -1,9 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './App.css';
-import { ThemeProvider } from '@material-ui/core';
+import { ThemeProvider, StylesProvider } from '@material-ui/core';
 import theme from './lib/theme';
-import jwtDecode from 'jwt-decode'
+import jwtDecode from 'jwt-decode';
+//redux
+import { Provider } from 'react-redux'
+import store from './redux/store'
+import { SET_AUTHTICATED, SET_UNAUTHTICATED } from './redux/types'
+import { logoutUser, getUserData } from './redux/actions/userActions'
 //components
 import Navbar from './components/Navbar';
 import AuthRoute from './lib/AuthRoute'
@@ -11,9 +16,9 @@ import AuthRoute from './lib/AuthRoute'
 import home from './pages/home'
 import login from './pages/login'
 import signup from './pages/signup'
+import axios from 'axios';
 
 const token = localStorage.FBIdToken;
-let authenticated;
 
 if (token) {
   const decodeToken = jwtDecode(token);
@@ -21,31 +26,33 @@ if (token) {
   if (decodeToken.exp * 1000 < Date.now()) {
     console.log('Token is NOT valid')
     window.location.href = '/login';
-    authenticated = false;
+    // authenticated = false;
+    store.dispatch(logoutUser())
   }
   else {
     console.log('Token is valid')
-    authenticated = true;
-
+    // authenticated = true;
+    axios.defaults.headers.common['Authorization'] = token;
+    store.dispatch(getUserData());
   }
 }
 console.log('Theme', theme)
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <div className="App">
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
         <Router>
           <Navbar />
           <div className="container">
             <Switch>
               <Route exact path="/" component={home} />
-              <AuthRoute exact path="/login" component={login} authenticated={authenticated} />
-              <AuthRoute exact path="/signup" component={signup} authenticated={authenticated} />
+              <AuthRoute exact path="/login" component={login} />
+              <AuthRoute exact path="/signup" component={signup} />
             </Switch>
           </div>
         </Router>
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Provider>
   );
 }
 
