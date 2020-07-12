@@ -3,7 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './App.css';
 import { ThemeProvider } from '@material-ui/core';
 import theme from './lib/theme';
-import jwtDecode from 'jwt-decode'
+import jwtDecode from 'jwt-decode';
+//redux
+import { Provider } from 'react-redux'
+import store from './redux/store'
 //components
 import Navbar from './components/Navbar';
 import AuthRoute from './lib/AuthRoute'
@@ -32,8 +35,8 @@ if (token) {
 console.log('Theme', theme)
 function App() {
   return (
-    <ThemeProvider theme={theme}>
-      <div className="App">
+    <Provider store={store}>
+      <ThemeProvider theme={theme}>
         <Router>
           <Navbar />
           <div className="container">
@@ -44,8 +47,8 @@ function App() {
             </Switch>
           </div>
         </Router>
-      </div>
-    </ThemeProvider>
+      </ThemeProvider>
+    </Provider>
   );
 }
 
