@@ -33,7 +33,15 @@ const styles = theme => ({
   },
   closeButton: {
     position: 'absolute',
-    right: '0%'
+    right: '5%'
+  },
+  expandButton: {
+    position: 'absolute',
+    right: '5%'
+  },
+  spinnerDiv: {
+    textAlign: 'center',
+    margin: '20px 0 20px 0'
   }
 
 })
@@ -58,7 +66,9 @@ class PostDialog extends Component {
     } = this.props;
 
     const dialogMarkup = loading ? (
-      <CircularProgress size={200} />
+      <div className={classes.spinnerDiv}>
+        <CircularProgress size={200} />
+      </div>
     ) : (
         <Grid container spacing={16}>
           <Grid item sm={5}>

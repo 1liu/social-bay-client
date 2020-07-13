@@ -16,7 +16,7 @@ import MyButton from 'lib/MyButton'
 const styles = theme => ({
   deleteButton: {
     position: 'absolute',
-    left: '90%',
+    right: '5%',
     top: '5%'
   }
 })
