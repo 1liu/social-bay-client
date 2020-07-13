@@ -1,4 +1,4 @@
-import { SET_POSTS, LOADING_POST, LIKE_POST, UNLIKE_POST, SET_ERRORS, DELETE_POST } from '../types'
+import { SET_POSTS, LOADING_POST, LIKE_POST, UNLIKE_POST, SET_ERRORS, DELETE_POST, CREATE_POST, LOADING_UI, CLEAR_ERRORS } from '../types'
 import axios from 'axios'
 
 // get all posts
@@ -15,6 +15,26 @@ export const getPosts = () => (dispatch) => {
       dispatch({
         type: SET_POSTS,
         payload: []
+      })
+    })
+}
+//create a post
+export const createPost = (newPost) => (dispatch) => {
+  dispatch({ type: LOADING_UI });
+  axios.post('/posts', newPost)
+    .then(res => {
+      dispatch({
+        type: CREATE_POST,
+        payload: res.data
+      })
+      dispatch({
+        type: CLEAR_ERRORS
+      })
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_ERRORS,
+        payload: err.response.data
       })
     })
 }
