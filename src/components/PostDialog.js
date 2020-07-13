@@ -3,8 +3,9 @@ import PropTypes from 'prop-types'
 import MyButton from '../lib/MyButton'
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
+import LikeButton from './LikeButton'
 //mui
-
+import ChatIcon from '@material-ui/icons/Chat'
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -61,7 +62,7 @@ class PostDialog extends Component {
 
   render() {
     const { classes,
-      post: { postId, body, createdAt, likeCount, userImage, userHandle },
+      post: { postId, body, createdAt, likeCount, commentCount, userImage, userHandle },
       UI: { loading }
     } = this.props;
 
@@ -70,7 +71,7 @@ class PostDialog extends Component {
         <CircularProgress size={200} />
       </div>
     ) : (
-        <Grid container spacing={16}>
+        <Grid container spacing={2}>
           <Grid item sm={5}>
             <img src={userImage} alt="profile" className={classes.profileImage} />
           </Grid>
@@ -89,6 +90,12 @@ class PostDialog extends Component {
             <Typography variant="body1" color="textSecondary">
               {body}
             </Typography>
+            <LikeButton postId={postId} />
+            <span>{likeCount} likes</span>
+            <MyButton tip="comment">
+              <ChatIcon color="primary" />
+            </MyButton>
+            <span>{commentCount} Comments</span>
           </Grid>
         </Grid>
       )

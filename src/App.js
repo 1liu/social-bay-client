@@ -1,13 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './App.css';
-import { ThemeProvider, StylesProvider } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core';
 import theme from './lib/theme';
 import jwtDecode from 'jwt-decode';
 //redux
 import { Provider } from 'react-redux'
 import store from './redux/store'
-import { SET_AUTHTICATED, SET_UNAUTHTICATED } from './redux/types'
 import { logoutUser, getUserData } from './redux/actions/userActions'
 //components
 import Navbar from './components/Navbar';
