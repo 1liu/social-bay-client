@@ -4,6 +4,7 @@ import MyButton from '../lib/MyButton'
 import dayjs from 'dayjs'
 import { Link } from 'react-router-dom'
 import LikeButton from './LikeButton'
+import Comments from './Comments'
 //mui
 import ChatIcon from '@material-ui/icons/Chat'
 import Dialog from '@material-ui/core/Dialog';
@@ -62,7 +63,7 @@ class PostDialog extends Component {
 
   render() {
     const { classes,
-      post: { postId, body, createdAt, likeCount, commentCount, userImage, userHandle },
+      post: { postId, body, createdAt, likeCount, commentCount, userImage, userHandle, comments },
       UI: { loading }
     } = this.props;
 
@@ -96,7 +97,10 @@ class PostDialog extends Component {
               <ChatIcon color="primary" />
             </MyButton>
             <span>{commentCount} Comments</span>
+            <hr className={classes.invisibleSeparator} />
           </Grid>
+
+          <Comments comments={comments} />
         </Grid>
       )
     return (
@@ -122,7 +126,6 @@ class PostDialog extends Component {
           <DialogContent className={classes.dialogContent}>
             {dialogMarkup}
           </DialogContent>
-
         </Dialog>
       </Fragment>
     )
