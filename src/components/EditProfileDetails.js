@@ -137,7 +137,7 @@ class EditProfileDetails extends Component {
   }
 }
 
-EditProfileDetails.prototypes = {
+EditProfileDetails.propTypes = {
   editUserDetails: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired
 }

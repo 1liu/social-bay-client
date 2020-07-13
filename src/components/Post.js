@@ -2,11 +2,15 @@ import React, { Component } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
+import PropTypes from 'prop-types'
 // MUI
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
+//redux
+import { connect } from 'react-redux'
+import { likePost, unlikePost } from '../redux/actions/dataActions'
 var relativeTime = require('dayjs/plugin/relativeTime')
 
 const styles = {
@@ -52,4 +56,14 @@ class Post extends Component {
   }
 }
 
-export default withStyles(styles)(Post)
+Post.propTypes = {
+
+}
+const mapStateToProps = state => ({
+  user: state.user
+})
+const mapActionsToProps = {
+  likePost,
+  unlikePost
+}
+export default connect(mapStateToProps, mapActionsToProps)(withStyles(styles)(Post))

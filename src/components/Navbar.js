@@ -48,7 +48,7 @@ class Navbar extends Component {
   }
 }
 
-Navbar.prototypes = {
+Navbar.propTypes = {
   authenticated: PropTypes.bool.isRequired
 }
 

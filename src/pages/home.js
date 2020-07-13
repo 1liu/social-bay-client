@@ -47,7 +47,7 @@ class Home extends Component {
     )
   }
 }
-Home.prototypes = {
+Home.propTypes = {
   getPosts: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired
 }
