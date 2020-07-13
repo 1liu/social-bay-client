@@ -17,7 +17,7 @@ import AddIcon from '@material-ui/icons/Add'
 import CloseIcon from '@material-ui/icons/Close'
 //redux
 import { connect } from 'react-redux'
-import { createPost } from '../redux/actions/dataActions'
+import { createPost, clearErrors } from '../redux/actions/dataActions'
 
 
 const styles = (theme) => ({
@@ -25,7 +25,9 @@ const styles = (theme) => ({
     position: 'absolute'
   },
   submitButton: {
-    position: 'relative'
+    position: 'relative',
+    float: 'right',
+    marginTop: 10
   },
   closeButton: {
     position: 'absolute',
@@ -45,8 +47,11 @@ class CreatePost extends Component {
       this.setState({ errors: nextProps.UI.errors });
     }
     if (!nextProps.UI.errors && !nextProps.UI.loading) {
-      this.setState({ body: '' });
-      this.handleClose();
+      this.setState({
+        open: false,
+        body: '',
+        errors: {}
+      })
     }
   }
 
@@ -61,9 +66,10 @@ class CreatePost extends Component {
   }
 
   handleClose = () => {
+    this.props.clearErrors();
     this.setState({
       open: false,
-      error: {}
+      errors: {}
     })
   }
 
@@ -143,6 +149,7 @@ class CreatePost extends Component {
 
 CreatePost.propTypes = {
   createPost: PropTypes.func.isRequired,
+  clearErrors: PropTypes.func.isRequired,
   classes: PropTypes.object.isRequired,
   UI: PropTypes.object.isRequired
 }
@@ -153,5 +160,5 @@ const mapStatetoProps = state => ({
 
 
 export default connect(
-  mapStatetoProps, { createPost }
+  mapStatetoProps, { createPost, clearErrors }
 )(withStyles(styles)(CreatePost));
