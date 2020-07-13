@@ -1,4 +1,4 @@
-import { SET_POST, LOADING_POST, LIKE_POST, UNLIKE_POST, SET_ERRORS } from '../types'
+import { SET_POSTS, LOADING_POST, LIKE_POST, UNLIKE_POST, SET_ERRORS } from '../types'
 import axios from 'axios'
 
 // get all posts
@@ -7,13 +7,13 @@ export const getPosts = () => (dispatch) => {
   axios.get('/posts')
     .then(res => {
       dispatch({
-        type: SET_POST,
+        type: SET_POSTS,
         payload: res.data
       })
     })
     .catch(err => {
       dispatch({
-        type: SET_POST,
+        type: SET_POSTS,
         payload: []
       })
     })
