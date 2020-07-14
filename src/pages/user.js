@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import Post from '../components/Post'
+import StaticProfile from '../components/StaticProfile'
 //mui
 import Grid from '@material-ui/core/Grid'
 //redux
@@ -24,10 +25,34 @@ class User extends Component {
   }
 
   render() {
-    return (
-      <div>
+    const { posts, loading } = this.props.data;
+    const postsMarkup = loading ? (
+      <p>loading...</p>
+    ) : (
+        posts === null ? (
+          <p>No post from this user</p>
+        ) : (
+            posts.map(post =>
+              <Post key={post.postId} post={post} />
+            )
+          ))
 
-      </div>
+    return (
+      <Grid container spacing={2}>
+        <Grid item sm={8} xs={12}>
+          <p>Content</p>
+          {postsMarkup}
+        </Grid>
+
+        <Grid item sm={4} xs={12}>
+          <p>Profile</p>
+          {this.state.profile === null ? (
+            <p>loading profile...</p>
+          ) : (
+              <StaticProfile profile={this.state.profile} />
+            )}
+        </Grid>
+      </Grid>
     )
   }
 }
