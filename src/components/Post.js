@@ -76,7 +76,8 @@ class Post extends Component {
             <ChatIcon color="primary" />
           </MyButton>
           <span>{commentCount} Comments</span>
-          <PostDialog postId={postId}
+          <PostDialog
+            postId={postId}
             userHandle={userHandle}
             openDialog={this.props.openDialog}
           />
