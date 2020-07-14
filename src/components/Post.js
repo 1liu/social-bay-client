@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
 import PropTypes from 'prop-types'
 import DeleteButton from './DeleteButton'
 import PostDialog from './PostDialog'
@@ -17,7 +18,7 @@ import ChatIcon from '@material-ui/icons/Chat'
 //redux
 import { connect } from 'react-redux'
 
-var relativeTime = require('dayjs/plugin/relativeTime')
+
 
 const styles = {
   card: {
