@@ -17,6 +17,7 @@ import { createPost, clearErrors } from '../redux/actions/dataActions'
 
 
 const styles = (theme) => ({
+  ...theme.global,
   progress: {
     position: 'absolute'
   },
@@ -24,10 +25,6 @@ const styles = (theme) => ({
     position: 'relative',
     float: 'right',
     marginTop: 10
-  },
-  closeButton: {
-    position: 'absolute',
-    right: '0%'
   }
 });
 

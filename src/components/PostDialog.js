@@ -20,10 +20,7 @@ import { connect } from 'react-redux'
 import { getPost } from '../redux/actions/dataActions'
 
 const styles = theme => ({
-  invisibleSeparator: {
-    border: 'none',
-    margin: 4
-  },
+  ...theme.global,
   profileImage: {
     maxWidth: 200,
     height: 200,
@@ -33,10 +30,6 @@ const styles = theme => ({
   dialogContent: {
     padding: 20
   },
-  closeButton: {
-    position: 'absolute',
-    right: '5%'
-  },
   expandButton: {
     position: 'absolute',
     right: '5%'
@@ -45,7 +38,6 @@ const styles = theme => ({
     textAlign: 'center',
     margin: '20px 0 20px 0'
   }
-
 })
 
 class PostDialog extends Component {

@@ -11,15 +11,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import { connect } from 'react-redux'
 
 const styles = theme => ({
-  invisibleSeparator: {
-    border: 'none',
-    margin: 4
-  },
-  visibleSeparator: {
-    width: '100%',
-    borderBottom: '1px solid rgba(0,0,0,0.1)',
-    marginBottom: 20
-  },
+  ...theme.global,
   commentImage: {
     maxWidth: '100%',
     height: 100,
