@@ -1,4 +1,4 @@
-import { SET_POST, SET_POSTS, LOADING_POST, LIKE_POST, UNLIKE_POST, SET_ERRORS, DELETE_POST, CREATE_POST, LOADING_UI, STOP_LOADING_UI, CLEAR_ERRORS, SUBMIT_COMMENT } from '../types'
+import { SET_POST, SET_POSTS, LOADING_POST, LIKE_POST, UNLIKE_POST, SET_ERRORS, DELETE_POST, CREATE_POST, LOADING_UI, STOP_LOADING_UI, LOADING_DATA, CLEAR_ERRORS, SUBMIT_COMMENT, LOADING_USER } from '../types'
 import axios from 'axios'
 
 // get all posts
@@ -111,4 +111,22 @@ export const submitComment = (postId, commentData) => (dispatch) => {
 //clear errors
 export const clearErrors = () => (dispatch) => {
   dispatch({ type: CLEAR_ERRORS })
+}
+
+//get user data
+export const getUserData = userHandle => dispatch => {
+  dispatch({ type: LOADING_DATA });
+  axios.get(`/user/${userHandle}`)
+    .then(res => {
+      dispatch({
+        type: SET_POSTS,
+        payload: res.data.posts
+      })
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_POSTS,
+        payload: null
+      })
+    })
 }
