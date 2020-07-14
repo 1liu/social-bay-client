@@ -21,21 +21,17 @@ const token = localStorage.FBIdToken;
 
 if (token) {
   const decodeToken = jwtDecode(token);
-  console.log(decodeToken)
   if (decodeToken.exp * 1000 < Date.now()) {
-    console.log('Token is NOT valid')
     window.location.href = '/login';
     // authenticated = false;
     store.dispatch(logoutUser())
   }
   else {
-    console.log('Token is valid')
     // authenticated = true;
     axios.defaults.headers.common['Authorization'] = token;
     store.dispatch(getUserData());
   }
 }
-console.log('Theme', theme)
 function App() {
   return (
     <Provider store={store}>
