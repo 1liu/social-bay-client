@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { } from 'react'
 import { Route, Redirect } from 'react-router-dom'
 // redux
 import { connect } from 'react-redux'
@@ -11,7 +11,7 @@ const AuthRoute = ({ component: Component, authenticated, ...rest }) => (
   />
 )
 
-AuthRoute.prototypes = {
+AuthRoute.propTypes = {
   user: PropTypes.object.isRequired
 }
 

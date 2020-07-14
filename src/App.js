@@ -1,13 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import './App.css';
-import { ThemeProvider, StylesProvider } from '@material-ui/core';
+import { ThemeProvider } from '@material-ui/core';
 import theme from './lib/theme';
 import jwtDecode from 'jwt-decode';
 //redux
 import { Provider } from 'react-redux'
 import store from './redux/store'
-import { SET_AUTHTICATED, SET_UNAUTHTICATED } from './redux/types'
 import { logoutUser, getUserData } from './redux/actions/userActions'
 //components
 import Navbar from './components/Navbar';
@@ -22,21 +21,17 @@ const token = localStorage.FBIdToken;
 
 if (token) {
   const decodeToken = jwtDecode(token);
-  console.log(decodeToken)
   if (decodeToken.exp * 1000 < Date.now()) {
-    console.log('Token is NOT valid')
     window.location.href = '/login';
     // authenticated = false;
     store.dispatch(logoutUser())
   }
   else {
-    console.log('Token is valid')
     // authenticated = true;
     axios.defaults.headers.common['Authorization'] = token;
     store.dispatch(getUserData());
   }
 }
-console.log('Theme', theme)
 function App() {
   return (
     <Provider store={store}>

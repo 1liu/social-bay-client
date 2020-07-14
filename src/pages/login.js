@@ -14,29 +14,7 @@ import { connect } from 'react-redux'
 import { loginUser } from '../redux/actions/userActions'
 
 const styles = theme => ({
-  form: {
-    textAlign: 'center'
-  },
-  image: {
-    margin: '20px auto 20px auto',
-    width: 100
-  },
-  button: {
-    margin: 10
-  },
-  pageTitle: {
-    margin: '10px auto 10px auto',
-  },
-  textField: {
-    margin: '10px auto 10px auto',
-  },
-  customError: {
-    color: 'red',
-    fontSize: 12
-  },
-  progress: {
-    position: 'absolute'
-  }
+  ...theme.global,
 })
 
 

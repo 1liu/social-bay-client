@@ -176,7 +176,7 @@ export class Profile extends Component {
   }
 }
 
-Profile.prototypes = {
+Profile.propTypes = {
   user: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   logoutUser: PropTypes.func.isRequired,

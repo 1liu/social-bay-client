@@ -1,43 +1,20 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types'
+import AppIcon from '../images/icon.png'
+//MUI
+import Grid from '@material-ui/core/Grid'
+import CircularProgress from '@material-ui/core/CircularProgress';
 import TextField from '@material-ui/core/TextField';
 import withStyles from '@material-ui/core/styles/withStyles'
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types'
-import AppIcon from '../images/icon.png'
-import axios from 'axios'
-//MUI
-import Grid from '@material-ui/core/Grid'
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { Link } from 'react-router-dom';
 // redux
 import { connect } from 'react-redux'
 import { signupUser } from '../redux/actions/userActions'
 
 const styles = theme => ({
-  form: {
-    textAlign: 'center'
-  },
-  image: {
-    margin: '20px auto 20px auto',
-    width: 100
-  },
-  button: {
-    margin: 10
-  },
-  pageTitle: {
-    margin: '10px auto 10px auto',
-  },
-  textField: {
-    margin: '10px auto 10px auto',
-  },
-  customError: {
-    color: 'red',
-    fontSize: 12
-  },
-  progress: {
-    position: 'absolute'
-  }
+  ...theme.global,
 })
 
 class Signup extends Component {
@@ -48,9 +25,7 @@ class Signup extends Component {
       password: '',
       confirmedPassword: '',
       handle: '',
-      errors: {
-
-      }
+      errors: {}
     }
   }
 
