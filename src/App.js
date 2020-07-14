@@ -18,6 +18,8 @@ import signup from './pages/signup'
 import user from './pages/user'
 import axios from 'axios';
 
+axios.defaults.baseURL = 'https://us-central1-social-bay-5841e.cloudfunctions.net/api';
+
 const token = localStorage.FBIdToken;
 
 if (token) {
