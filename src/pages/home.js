@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Grid from '@material-ui/core/Grid'
 import Post from '../components/Post'
 import Profile from '../components/Profile'
+import PostSkeleton from '../lib/PostSkeleton'
 import PropTypes from 'prop-types'
 //redux
 import { connect } from 'react-redux'
@@ -24,7 +25,9 @@ class Home extends Component {
   render() {
     const { posts, loading } = this.props.data;
 
-    let recentPostsMarkup = loading ? <p>loading...</p>
+    let recentPostsMarkup = loading ?
+      //
+      <PostSkeleton />
       : posts.map(post =>
         <Post key={post.postId} post={post} />
       )
