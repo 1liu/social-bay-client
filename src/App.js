@@ -15,7 +15,10 @@ import AuthRoute from './lib/AuthRoute'
 import home from './pages/home'
 import login from './pages/login'
 import signup from './pages/signup'
+import user from './pages/user'
 import axios from 'axios';
+
+axios.defaults.baseURL = 'https://us-central1-social-bay-5841e.cloudfunctions.net/api';
 
 const token = localStorage.FBIdToken;
 
@@ -41,6 +44,8 @@ function App() {
           <div className="container">
             <Switch>
               <Route exact path="/" component={home} />
+              <Route exact path="/users/:handle" component={user} />
+              <Route exact path="/users/:handle/post/:postId" component={user} />
               <AuthRoute exact path="/login" component={login} />
               <AuthRoute exact path="/signup" component={signup} />
             </Switch>

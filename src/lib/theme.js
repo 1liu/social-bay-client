@@ -46,7 +46,8 @@ const theme = createMuiTheme({
     progress: {
       position: 'absolute'
     }
-  }
+  },
+
 });
 
 export default theme;

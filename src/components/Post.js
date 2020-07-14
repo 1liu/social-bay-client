@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import withStyles from '@material-ui/core/styles/withStyles'
 import { Link } from 'react-router-dom'
 import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
 import PropTypes from 'prop-types'
 import DeleteButton from './DeleteButton'
 import PostDialog from './PostDialog'
@@ -17,7 +18,7 @@ import ChatIcon from '@material-ui/icons/Chat'
 //redux
 import { connect } from 'react-redux'
 
-var relativeTime = require('dayjs/plugin/relativeTime')
+
 
 const styles = {
   card: {
@@ -76,8 +77,11 @@ class Post extends Component {
             <ChatIcon color="primary" />
           </MyButton>
           <span>{commentCount} Comments</span>
-          <PostDialog postId={postId}
-            userHandle={userHandle} />
+          <PostDialog
+            postId={postId}
+            userHandle={userHandle}
+            openDialog={this.props.openDialog}
+          />
         </CardContent>
       </Card>
     )
@@ -87,7 +91,8 @@ class Post extends Component {
 Post.propTypes = {
   user: PropTypes.object.isRequired,
   post: PropTypes.object.isRequired,
-  classes: PropTypes.object.isRequired
+  classes: PropTypes.object.isRequired,
+  openDialog: PropTypes.bool
 }
 const mapStateToProps = state => ({
   user: state.user
