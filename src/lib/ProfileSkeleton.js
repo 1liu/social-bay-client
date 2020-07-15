@@ -1,15 +1,13 @@
-import React, { Fragment } from 'react'
+import React, { } from 'react'
 import NoImg from '../images/blank-profile-picture.png'
 import PropTypes from 'prop-types'
 // MUI
 import withStyles from '@material-ui/core/styles/withStyles'
 import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
 import LocationOn from '@material-ui/icons/LocationOn'
 import CalendarToday from '@material-ui/icons/CalendarToday'
 import LinkIcon from '@material-ui/icons/Link'
-import MuiLink from '@material-ui/core/Link'
-import theme from './theme'
+//import theme from './theme'
 
 const styles = theme => ({
   paper: {

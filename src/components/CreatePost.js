@@ -35,17 +35,34 @@ class CreatePost extends Component {
     errors: {}
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.UI.errors) {
-      this.setState({ errors: nextProps.UI.errors });
+  /*   componentWillReceiveProps(nextProps) {
+      if (nextProps.UI.errors) {
+        this.setState({ errors: nextProps.UI.errors });
+      }
+      if (!nextProps.UI.errors && !nextProps.UI.loading) {
+        this.setState({
+          open: false,
+          body: '',
+          errors: {}
+        })
+      }
+    } */
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.UI.errors) {
+      return {
+        errors: props.UI.errors
+      };
     }
-    if (!nextProps.UI.errors && !nextProps.UI.loading) {
-      this.setState({
+    if (!props.UI.errors && !props.UI.loading) {
+      return {
         open: false,
         body: '',
         errors: {}
-      })
+      }
     }
+    // Return null to indicate no change to state.
+    return null;
   }
 
   handleChange = (event) => {

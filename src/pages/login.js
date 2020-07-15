@@ -29,11 +29,22 @@ class Login extends Component {
       }
     }
   }
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.UI.errors) {
-      this.setState({ errors: nextProps.UI.errors });
+  /*   componentWillReceiveProps(nextProps) {
+      if (nextProps.UI.errors) {
+        this.setState({ errors: nextProps.UI.errors });
+      }
+    } */
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.UI.errors) {
+      return {
+        errors: props.UI.errors
+      };
     }
+    // Return null to indicate no change to state.
+    return null;
   }
+
   handleSubmit = (event) => {
     event.preventDefault();
     const userData = {
