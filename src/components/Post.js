@@ -59,7 +59,7 @@ class Post extends Component {
         <CardContent className={classes.content}>
           <Typography variant="h5"
             component={Link}
-            to={`/users/${userHandle}`}
+            to={`/user/${userHandle}`}
             color="primary"
           >{userHandle}
           </Typography>

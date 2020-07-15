@@ -73,7 +73,7 @@ class Notification extends Component {
             {icon}
             <Typography
               component={Link}
-              to={`/users/${n.recipient}/post/${n.postId}`}
+              to={`/user/${n.recipient}/post/${n.postId}`}
               color="primary"
               variant="body1">
               {n.sender} {verb} your post {time}

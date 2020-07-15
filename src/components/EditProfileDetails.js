@@ -90,7 +90,7 @@ class EditProfileDetails extends Component {
                 type='text'
                 label='Bio'
                 multiline
-                rows="3"
+                rows="2"
                 placeholder="Bio About Yourself"
                 className={classes.TextField}
                 value={this.state.bio}
@@ -102,7 +102,7 @@ class EditProfileDetails extends Component {
                 type='text'
                 label='Website'
                 multiline
-                rows="3"
+                rows="1"
                 placeholder="Your website"
                 className={classes.TextField}
                 value={this.state.website}
@@ -114,7 +114,7 @@ class EditProfileDetails extends Component {
                 type='text'
                 label='Location'
                 multiline
-                rows="3"
+                rows="1"
                 placeholder="Your location"
                 className={classes.TextField}
                 value={this.state.location}

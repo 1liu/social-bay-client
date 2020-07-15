@@ -34,7 +34,6 @@ class User extends Component {
   render() {
     const { posts, loading } = this.props.data;
     const { postIdParam } = this.state;
-
     const postsMarkup = loading ? (
       // <p>loading...</p>
       <PostSkeleton />
