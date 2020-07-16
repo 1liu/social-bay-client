@@ -150,7 +150,7 @@ PostDialog.propTypes = {
   postId: PropTypes.string.isRequired,
   post: PropTypes.object.isRequired,
   UI: PropTypes.object.isRequired,
-  openDialog: PropTypes.object
+  openDialog: PropTypes.bool
 }
 
 const mapStatetoProps = state => ({
