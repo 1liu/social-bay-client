@@ -14,10 +14,34 @@ const styles = theme => ({
 })
 
 class CommentForm extends Component {
-  state = {
-    body: '',
-    errors: {}
+  constructor(props) {
+    super(props);
+    this.state = {
+      body: '',
+      errors: {}
+    }
   }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.UI.errors) {
+      this.setState({ errors: nextProps.UI.errors })
+    }
+    if (!nextProps.UI.errors && !nextProps.UI.loading) {
+      this.setState({ body: '' })
+    }
+  }
+  /*   static getDerivedStateFromProps(props, state) {
+      if (props.UI.errors) {
+        return {
+          errors: props.UI.errors
+        };
+      }
+      if (!props.UI.errors && !props.UI.loading) {
+        return { body: '' }
+      }
+      // Return null to indicate no change to state.
+      return null;
+    } */
 
   handleChange = (event) => {
     this.setState({
@@ -30,14 +54,6 @@ class CommentForm extends Component {
     this.props.submitComment(this.props.postId, { body: this.state.body })
   }
 
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.UI.errors) {
-      this.setState({ errors: nextProps.UI.errors })
-    }
-    if (!nextProps.UI.errors && !nextProps.UI.loading) {
-      this.setState({ body: '' })
-    }
-  }
 
   render() {
     const { classes, authenticated } = this.props;

@@ -12,28 +12,56 @@ import { connect } from 'react-redux'
 import { getUserData } from '../redux/actions/dataActions'
 
 class User extends Component {
-  state = {
-    profile: null,
-    postIdParam: null
+  constructor(props) {
+    super(props);
+    this.state = {
+      profile: null,
+      postIdParam: null
+    }
   }
+  /*   componentWillReceiveProps = (nextProps) => {
+      if (nextProps.match.params.postId !== this.state.postIdParam) {
+        window.location.reload();
+      }
+    }; */
 
   componentDidMount() {
     const handle = this.props.match.params.handle;
     const postId = this.props.match.params.postId;
-    if (postId) {
-      this.setState({ postIdParam: postId });
-    }
+
+    if (postId) this.setState({ postIdParam: postId });
+
     this.props.getUserData(handle);
-    axios.get(`/user/${handle}`)
+    console.log('starts axio')
+    axios
+      .get(`/user/${handle}`)
       .then(res => {
         this.setState({ profile: res.data.user });
+        console.log('complete axio')
       })
       .catch(err => console.log(err));
+
   }
+  /*
+    static getDerivedStateFromProps(props, state) {
+      if (props.UI.errors) {
+        return {
+          errors: props.UI.errors
+        };
+      }
+      if (!props.UI.errors && !props.UI.loading) {
+        return { body: '' }
+      }
+      // Return null to indicate no change to state.
+      return null;
+    } */
+
 
   render() {
     const { posts, loading } = this.props.data;
     const { postIdParam } = this.state;
+    console.log('postIdParam', postIdParam)
+    console.log('state', this.state)
     const postsMarkup = loading ? (
       // <p>loading...</p>
       <PostSkeleton />
@@ -50,7 +78,7 @@ class User extends Component {
                   return <Post key={post.postId} post={post} />
                 }
                 else {
-                  return <Post key={post.postId} post={post} openDialog />
+                  return <Post key={post.postId} post={post} openDialog={true} />
                 }
               })
             )
